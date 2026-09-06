@@ -555,11 +555,16 @@ textarea:focus-visible {
 
 /* ---------- detail ---------- */
 
+
+
 .detail-panel {
   position: relative;
   z-index: 2;
 
   min-width: 0;
+  min-height: 0;   /* 추가 */
+
+  overflow: hidden; /* 추가 */
 
   background:
     linear-gradient(
@@ -570,15 +575,18 @@ textarea:focus-visible {
 }
 
 
+
 .detail-panel h3 {
   color: #285f7a;
 }
 
 .detail-scroll {
   height: 100%;
+  min-height: 0;
+
   overflow-y: auto;
 
-  padding: 30px 28px 110px;
+  padding: 30px 28px 150px;
 }
 
 .detail-title {
@@ -641,7 +649,7 @@ textarea::placeholder {
 }
 
 textarea {
-  min-height: 170px;
+  min-height: 140px;
 }
 
 .divider {
