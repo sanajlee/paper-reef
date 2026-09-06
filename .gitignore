@@ -1,0 +1,17 @@
+# dependencies
+node_modules/
+
+# build
+dist/
+
+# local environment variables
+.env
+.env.local
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
+
+# logs
+*.log
