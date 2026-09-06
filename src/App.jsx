@@ -1039,7 +1039,7 @@ function PaperList({
                 <img
                   src={paperPixel}
                   alt=""
-                  className="paper.png"
+                  className="paper-icon-img"
                 />
               </div>
 
