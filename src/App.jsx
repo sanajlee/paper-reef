@@ -89,14 +89,34 @@ async function fetchPaperMetadata(input) {
 
   if (error) {
     console.error(
-      "Metadata function error:",
+      "Metadata Edge Function error:",
       error
     );
 
-    throw new Error(
-      error.message ||
-      "Metadata fetch failed."
-    );
+    let message = error.message;
+
+    if (error.context) {
+      try {
+        const body =
+          await error.context.clone().json();
+
+        console.error(
+          "Edge Function response body:",
+          body
+        );
+
+        if (body?.error) {
+          message = body.error;
+        }
+      } catch (parseError) {
+        console.error(
+          "Could not parse Edge Function response:",
+          parseError
+        );
+      }
+    }
+
+    throw new Error(message);
   }
 
   if (data?.error) {
@@ -105,6 +125,8 @@ async function fetchPaperMetadata(input) {
 
   return data;
 }
+
+
 
 export default function App() {
   const [topics, setTopics] = useState(() =>
