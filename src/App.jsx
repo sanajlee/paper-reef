@@ -141,6 +141,15 @@ export default function App() {
 
       setUser(session?.user ?? null);
       setAuthLoading(false);
+
+      if (window.location.hash.includes("access_token")) {
+            window.history.replaceState(
+              {},
+              document.title,
+              window.location.pathname
+            );
+          }
+      
     }
 
     initAuth();
