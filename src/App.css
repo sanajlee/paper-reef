@@ -1452,7 +1452,7 @@ textarea {
   원본 aspect ratio 유지.
 */
 .reef-bottom {
-  left: 37%;
+  left: 42%;
   bottom: -8px;
 
   width: min(650px, 43vw);
