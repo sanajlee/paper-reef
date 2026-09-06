@@ -1135,6 +1135,16 @@ function PaperDetail({
           }
         />
 
+        <div className="detail-meta-summary">
+          <span>
+            {formatVenueShort(paper.venue, paper.year)}
+          </span>
+
+          <span>
+            {formatAuthorsShort(paper.authors)}
+          </span>
+        </div>
+
         <div className="metadata-grid">
           <input
             placeholder="Authors"

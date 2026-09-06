@@ -2093,3 +2093,25 @@ input {
   font-size: 12px;
   color: #7198aa;
 }
+
+
+.detail-meta-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  margin: -8px 0 18px;
+
+  color: #5d879a;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.detail-meta-summary span:first-child {
+  font-weight: 600;
+}
+
+.detail-meta-summary span:last-child {
+  color: #789aaa;
+  font-size: 11px;
+}
