@@ -1,4 +1,4 @@
-import { corsHeaders } from "npm:@supabase/supabase-js/cors";
+import { corsHeaders } from "jsr:@supabase/supabase-js@2/cors";
 
 function cleanText(text = "") {
   return text.replace(/\s+/g, " ").trim();
@@ -500,7 +500,7 @@ Deno.serve(async (req) => {
             : "Metadata fetch failed.",
       },
       {
-        status: 404,
+        status: 500,
         headers: corsHeaders,
       }
     );
