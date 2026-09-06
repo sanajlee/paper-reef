@@ -2115,3 +2115,8 @@ input {
   color: #789aaa;
   font-size: 11px;
 }
+
+.paper-icon-img {
+  width: 36px;
+  height: 48px;
+}

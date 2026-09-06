@@ -4,6 +4,7 @@ import { supabase } from "./supabase";
 import reefLeft from "./assets/reef-left.png";
 import reefBottom from "./assets/reef-bottom.png";
 import reefRight from "./assets/reef-right.png";
+import paperPixel from "./assets/paper.png";
 
 import fish1 from "./assets/fish_01.png";
 import fish2 from "./assets/fish_02.png";
@@ -1034,10 +1035,12 @@ function PaperList({
               }`}
               onClick={() => onSelectPaper(paper.id)}
             >
-              <div className="paper-doc-icon">
-                <span />
-                <span />
-                <span />
+              <div className="paper-icon">
+                <img
+                  src={paperPixel}
+                  alt=""
+                  className="paper.png"
+                />
               </div>
 
               <div className="paper-card-content">
