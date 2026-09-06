@@ -1,13 +1,7 @@
 :root {
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-
   color: #163c5a;
-
+  font-pixel: "Silkscreen", monospace;
+  font-family: var(--font-pixel);
   background:
     radial-gradient(
       circle at 50% -15%,
@@ -27,12 +21,19 @@
 }
 
 body {
+  margin: 0;
+
+  font-family:
+    "Roboto",
+    "Noto Color Emoji",
+    sans-serif;
+
   background:
-    radial-gradient(circle at 50% 0%,
-      #0d5275 0%,
-      #083b5a 24%,
-      #052943 55%,
-      #031a2d 100%);
+    linear-gradient(
+      180deg,
+      #72c8dc 0%,
+      #8fd3e2 100%
+    );
 }
 
 button,
@@ -1952,4 +1953,43 @@ input {
 
 .sync-error {
   color: #d66c78;
+}
+
+.pixel-font {
+  font-family: "Silkscreen", monospace;
+}
+
+.logo-text h1 {
+  margin: 0;
+
+  font-family: "Silkscreen", monospace;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.3px;
+
+  color: #123d5b;
+}
+
+.empty-state h2 {
+  margin: 5px 0 2px;
+
+  font-family: "Silkscreen", monospace;
+  font-size: 16px; /* Silkscreen은 같은 20px면 좀 커 보여서 줄이는 걸 추천 */
+  font-weight: 700;
+
+  color: #326f8d;
+}
+
+.empty-detail h2 {
+  margin: 8px 0 3px;
+
+  font-family: "Silkscreen", monospace;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.modal-header h2,
+.popover-title {
+  font-family: "Silkscreen", monospace;
 }
