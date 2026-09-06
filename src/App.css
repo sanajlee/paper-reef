@@ -1993,3 +1993,31 @@ input {
 .popover-title {
   font-family: "Silkscreen", monospace;
 }
+
+
+.topic-main {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-width: 0;
+
+  padding: 9px 10px;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: inherit;
+  text-align: left;
+
+  cursor: pointer;
+
+  font-family: "Silkscreen", monospace;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+}
