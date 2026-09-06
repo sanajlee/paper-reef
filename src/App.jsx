@@ -67,7 +67,6 @@ function newPaper(topicId = null) {
     venue: "",
     year: "",
     url: "",
-    pdfUrl: "",
     note: "",
     isRead: false,
     isUseful: false,
@@ -149,7 +148,7 @@ export default function App() {
               window.location.pathname
             );
           }
-      
+
     }
 
     initAuth();
@@ -1136,15 +1135,6 @@ function PaperDetail({
           </button>
 
           <button
-            disabled={!paper.pdfUrl}
-            onClick={() =>
-              window.open(paper.pdfUrl, "_blank")
-            }
-          >
-            PDF
-          </button>
-
-          <button
             onClick={() => exportBibtex(paper)}
           >
             Cite
@@ -1163,15 +1153,6 @@ function PaperDetail({
             }
           />
 
-          <input
-            placeholder="PDF URL"
-            value={paper.pdfUrl}
-            onChange={(event) =>
-              updatePaper(paper.id, {
-                pdfUrl: event.target.value,
-              })
-            }
-          />
         </div>
 
         <div className="divider" />
@@ -1294,7 +1275,6 @@ function PaperModal({
   const [venue, setVenue] = useState("");
   const [year, setYear] = useState("");
   const [url, setUrl] = useState("");
-  const [pdfUrl, setPdfUrl] = useState("");
   const [note, setNote] = useState("");
   const [isFetching, setIsFetching] = useState(false);
   const [fetchMessage, setFetchMessage] = useState("");
@@ -1348,10 +1328,6 @@ function PaperModal({
         setUrl(metadata.url);
       }
 
-      if (metadata.pdfUrl) {
-        setPdfUrl(metadata.pdfUrl);
-      }
-
       const sourceNames = {
         neurips: "NeurIPS",
         acl: "ACL Anthology",
@@ -1391,7 +1367,6 @@ function PaperModal({
       venue: venue.trim(),
       year: year.trim(),
       url: url.trim(),
-      pdfUrl: pdfUrl.trim(),
       note: note.trim(),
       isRead: false,
       isUseful: false,
@@ -1530,18 +1505,6 @@ function PaperModal({
             </div>
           )}
         </div>
-
-        <label className="form-field">
-          <span>PDF URL</span>
-
-          <input
-            value={pdfUrl}
-            onChange={(event) =>
-              setPdfUrl(event.target.value)
-            }
-            placeholder="https://..."
-          />
-        </label>
 
         <div className="form-field">
           <span>Topics</span>
