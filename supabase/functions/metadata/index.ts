@@ -211,6 +211,28 @@ async function fetchACL(input: string) {
     );
   }
 
+  const authors = bibField("author")
+    .replace(/[{}]/g, "")
+    .split(/\s+and\s+/i)
+    .map((author) => {
+      const parts = author
+        .split(",")
+        .map((part) => part.trim());
+
+      // ACL BibTeX: "Li, Qiming"
+      // → "Qiming Li"
+      if (parts.length >= 2) {
+        const family = parts[0];
+        const given = parts.slice(1).join(" ");
+
+        return `${given} ${family}`;
+      }
+
+      return author.trim();
+    })
+    .filter(Boolean)
+    .join(", ");
+
   const bib = await response.text();
 
   function bibField(name: string) {
@@ -229,9 +251,7 @@ async function fetchACL(input: string) {
   return {
     source: "acl",
     title: bibField("title").replace(/[{}]/g, ""),
-    authors: bibField("author")
-      .replace(/[{}]/g, "")
-      .replace(/\s+and\s+/gi, ", "),
+    authors,
     venue:
       (
         bibField("booktitle") ||

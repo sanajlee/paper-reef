@@ -1022,9 +1022,17 @@ function PaperList({
                 <strong>{paper.title}</strong>
 
                 <div className="paper-meta">
-                  {paper.venue && <span>{paper.venue}</span>}
-                  {paper.year && <span>{paper.year}</span>}
-                  {paper.authors && <span>· {paper.authors}</span>}
+                  {paper.venue && (
+                    <div className="paper-venue">
+                      {formatVenueShort(paper.venue, paper.year)}
+                    </div>
+                  )}
+
+                  {paper.authors && (
+                    <div className="paper-authors">
+                      {formatAuthorsShort(paper.authors)}
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -1731,4 +1739,127 @@ function exportBibtex(paper) {
   link.remove();
 
   URL.revokeObjectURL(url);
+}
+
+function formatAuthorsShort(authors) {
+  if (!authors) return "";
+
+  // 현재 metadata가 "Li, Qiming, Feng, Xiaocheng, ..."처럼
+  // comma-separated author list로 저장된다는 전제
+  const names = authors
+    .split(",")
+    .map((name) => name.trim())
+    .filter(Boolean);
+
+  if (names.length === 0) return "";
+
+  // 첫 저자의 surname
+  const firstAuthor = names[0];
+
+  if (names.length === 1) {
+    return firstAuthor;
+  }
+
+  return `${firstAuthor} et al.`;
+}
+
+
+function formatVenueShort(venue, year) {
+  if (!venue) return "";
+
+  const v = venue.toLowerCase();
+
+  // ACL
+  if (
+    v.includes("annual meeting of the association for computational linguistics")
+  ) {
+    const track = v.includes("findings")
+      ? "Findings"
+      : "Main";
+
+    return `ACL${year ? ` ${year}` : ""} (${track})`;
+  }
+
+  // EMNLP
+  if (
+    v.includes("empirical methods in natural language processing")
+  ) {
+    const track = v.includes("findings")
+      ? "Findings"
+      : "Main";
+
+    return `EMNLP${year ? ` ${year}` : ""} (${track})`;
+  }
+
+  // NAACL
+  if (
+    v.includes("north american chapter of the association for computational linguistics")
+  ) {
+    const track = v.includes("findings")
+      ? "Findings"
+      : "Main";
+
+    return `NAACL${year ? ` ${year}` : ""} (${track})`;
+  }
+
+  // EACL
+  if (
+    v.includes("european chapter of the association for computational linguistics")
+  ) {
+    const track = v.includes("findings")
+      ? "Findings"
+      : "Main";
+
+    return `EACL${year ? ` ${year}` : ""} (${track})`;
+  }
+
+  // CoNLL
+  if (v.includes("computational natural language learning")) {
+    return `CoNLL${year ? ` ${year}` : ""}`;
+  }
+
+  // NeurIPS
+  if (
+    v.includes("neural information processing systems") ||
+    v.includes("neurips")
+  ) {
+    return `NeurIPS${year ? ` ${year}` : ""}`;
+  }
+
+  // ICML
+  if (v.includes("international conference on machine learning")) {
+    return `ICML${year ? ` ${year}` : ""}`;
+  }
+
+  // ICLR
+  if (v.includes("international conference on learning representations")) {
+    return `ICLR${year ? ` ${year}` : ""}`;
+  }
+
+  // 모르는 venue는 원래 이름 유지
+  return venue;
+}
+
+
+function formatAuthorsShort(authors) {
+  if (!authors) return "";
+
+  const names = authors
+    .split(",")
+    .map((name) => name.trim())
+    .filter(Boolean);
+
+  if (names.length === 0) return "";
+
+  const firstAuthor = names[0];
+
+  // "Qiming Li" → "Li"
+  const surname =
+    firstAuthor.split(/\s+/).at(-1) || firstAuthor;
+
+  if (names.length === 1) {
+    return surname;
+  }
+
+  return `${surname} et al.`;
 }
