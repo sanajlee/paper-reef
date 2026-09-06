@@ -1629,9 +1629,6 @@ input {
 /*  transform: scaleX(-1);*/
 }
 
-.pixel-font {
-  font-family: "Pixelify Sans", monospace;
-}
 
 .logo {
   display: flex;
@@ -1959,6 +1956,12 @@ input {
   font-family: "Silkscreen", monospace;
 }
 
+.pixel-font h2{
+  font-family: "Silkscreen", monospace;
+}
+
+
+
 .logo-text h1 {
   margin: 0;
 
@@ -1979,6 +1982,10 @@ input {
   font-weight: 700;
 
   color: #326f8d;
+}
+
+.empty-state p{
+  font-family: "Silkscreen", monospace;
 }
 
 .empty-detail h2 {
