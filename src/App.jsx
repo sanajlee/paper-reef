@@ -681,7 +681,7 @@ function TopicSidebar({
     <aside className="sidebar">
       <div className="logo">
         <img
-          src="/coral-favicon.png"
+          src={`${import.meta.env.BASE_URL}coral-favicon.png`}
           className="logo-icon"
           alt=""
           aria-hidden="true"
