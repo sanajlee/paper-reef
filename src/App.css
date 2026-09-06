@@ -2116,7 +2116,7 @@ input {
   font-size: 11px;
 }
 
-.paper-icon-img {
-  width: 12px;
-  height: 18px;
+.paper-icon {
+  width: 36px;
+  height: 48px;
 }
