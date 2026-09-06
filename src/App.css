@@ -2021,3 +2021,17 @@ input {
   font-weight: 400;
   letter-spacing: -0.2px;
 }
+
+
+.logo-text span,
+.logo span {
+  display: block;
+  margin-top: 5px;
+
+  font-family: "Silkscreen", monospace;
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0;
+
+  color: #5e8da3;
+}
