@@ -2042,3 +2042,19 @@ input {
 
   color: #5e8da3;
 }
+
+.empty-list strong {
+  font-family: "Silkscreen", monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: #4c7890;
+}
+
+.empty-list span {
+  margin-top: 6px;
+
+  font-family: "Silkscreen", monospace;
+  font-size: 9px;
+  font-weight: 400;
+  color: #78a0b2;
+}

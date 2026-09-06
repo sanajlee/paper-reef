@@ -973,7 +973,11 @@ function PaperList({
       <div className="paper-list">
         {papers.length === 0 ? (
           <div className="empty-list">
-            <div className="empty-fish">🐟</div>
+            <img
+              src={fish1}
+              className="empty-list-fish"
+              alt=""
+            />
             <strong>No papers here yet.</strong>
             <span>Add one before it swims away.</span>
           </div>
@@ -1038,7 +1042,7 @@ function PaperDetail({
         <div className="empty-state">
           <div className="empty-fish-wrap">
             <img
-              src={fish1}
+              src={fish2}
               className="empty-fish"
               alt=""
               aria-hidden="true"
