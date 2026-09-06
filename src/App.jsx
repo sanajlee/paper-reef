@@ -974,7 +974,7 @@ function PaperList({
         {papers.length === 0 ? (
           <div className="empty-list">
             <img
-              src={fish1}
+              src={fish2}
               className="empty-list-fish"
               alt=""
             />
@@ -1042,7 +1042,7 @@ function PaperDetail({
         <div className="empty-state">
           <div className="empty-fish-wrap">
             <img
-              src={fish2}
+              src={fish1}
               className="empty-fish"
               alt=""
               aria-hidden="true"
