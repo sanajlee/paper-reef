@@ -77,16 +77,30 @@ function newPaper(topicId = null) {
 
 
 async function fetchPaperMetadata(input) {
-  const response = await fetch(
-    `/api/metadata?url=${encodeURIComponent(input)}`
-  );
-
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(
-      data.error || "Metadata fetch failed."
+  const { data, error } =
+    await supabase.functions.invoke(
+      "metadata",
+      {
+        body: {
+          url: input,
+        },
+      }
     );
+
+  if (error) {
+    console.error(
+      "Metadata function error:",
+      error
+    );
+
+    throw new Error(
+      error.message ||
+      "Metadata fetch failed."
+    );
+  }
+
+  if (data?.error) {
+    throw new Error(data.error);
   }
 
   return data;
