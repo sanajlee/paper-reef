@@ -1145,38 +1145,6 @@ function PaperDetail({
           </span>
         </div>
 
-        <div className="metadata-grid">
-          <input
-            placeholder="Authors"
-            value={paper.authors}
-            onChange={(event) =>
-              updatePaper(paper.id, {
-                authors: event.target.value,
-              })
-            }
-          />
-
-          <input
-            placeholder="Venue"
-            value={paper.venue}
-            onChange={(event) =>
-              updatePaper(paper.id, {
-                venue: event.target.value,
-              })
-            }
-          />
-
-          <input
-            placeholder="Year"
-            value={paper.year}
-            onChange={(event) =>
-              updatePaper(paper.id, {
-                year: event.target.value,
-              })
-            }
-          />
-        </div>
-
         <div className="link-buttons">
           <button
             className="primary-link"
@@ -1771,28 +1739,6 @@ function exportBibtex(paper) {
   link.remove();
 
   URL.revokeObjectURL(url);
-}
-
-function formatAuthorsShort(authors) {
-  if (!authors) return "";
-
-  // 현재 metadata가 "Li, Qiming, Feng, Xiaocheng, ..."처럼
-  // comma-separated author list로 저장된다는 전제
-  const names = authors
-    .split(",")
-    .map((name) => name.trim())
-    .filter(Boolean);
-
-  if (names.length === 0) return "";
-
-  // 첫 저자의 surname
-  const firstAuthor = names[0];
-
-  if (names.length === 1) {
-    return firstAuthor;
-  }
-
-  return `${firstAuthor} et al.`;
 }
 
 
