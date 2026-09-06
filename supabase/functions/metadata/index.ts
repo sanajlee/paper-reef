@@ -211,6 +211,21 @@ async function fetchACL(input: string) {
     );
   }
 
+  const bib = await response.text();
+
+  function bibField(name: string) {
+    const regex = new RegExp(
+      `${name}\\s*=\\s*[\\{"]([\\s\\S]*?)[\\}"]\\s*,?\\n`,
+      "i"
+    );
+
+    const match = bib.match(regex);
+
+    return match
+      ? cleanText(match[1])
+      : "";
+  }
+
   const authors = bibField("author")
     .replace(/[{}]/g, "")
     .split(/\s+and\s+/i)
@@ -232,21 +247,6 @@ async function fetchACL(input: string) {
     })
     .filter(Boolean)
     .join(", ");
-
-  const bib = await response.text();
-
-  function bibField(name: string) {
-    const regex = new RegExp(
-      `${name}\\s*=\\s*[\\{"]([\\s\\S]*?)[\\}"]\\s*,?\\n`,
-      "i"
-    );
-
-    const match = bib.match(regex);
-
-    return match
-      ? cleanText(match[1])
-      : "";
-  }
 
   return {
     source: "acl",
@@ -490,19 +490,22 @@ Deno.serve(async (req) => {
       }
     );
   } catch (error) {
-    console.error(error);
+  console.error("metadata error:", error);
 
-    return Response.json(
-      {
-        error:
-          error instanceof Error
-            ? error.message
-            : "Metadata fetch failed.",
+  return Response.json(
+    {
+      error:
+        error instanceof Error
+          ? error.message
+          : String(error),
+    },
+    {
+      status: 500,
+      headers: {
+        ...corsHeaders,
+        "Content-Type": "application/json",
       },
-      {
-        status: 500,
-        headers: corsHeaders,
-      }
-    );
-  }
+    }
+  );
+}
 });
