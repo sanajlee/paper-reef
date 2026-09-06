@@ -2043,6 +2043,11 @@ input {
   color: #5e8da3;
 }
 
+
+.empty-list .empty-fish {
+  width: 48px;
+  height: auto;
+}
 .empty-list strong {
   font-family: "Silkscreen", monospace;
   font-size: 14px;
