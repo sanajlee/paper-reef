@@ -12,3 +12,15 @@
 @media(max-width:700px){.daily-catch{margin:10px;padding:14px}.dc-rule{display:none}}
 
 .dc-launcher{position:fixed;right:16px;top:14px;z-index:1000;cursor:pointer;background:#e0f6f4;color:#195b68;border:1px solid #78b9c4;border-radius:30px;padding:10px 16px;font-weight:700;box-shadow:0 3px 10px #0002}
+
+/* Match Paper Reef's font system instead of using browser-default button fonts. */
+.daily-catch, .daily-catch * { font-family: "Roboto", "Noto Color Emoji", sans-serif; }
+.dc-launcher, .dc-kicker, .dc-heading h2, .dc-category, .dc-rule {
+  font-family: "Silkscreen", monospace;
+}
+.dc-launcher { font-size: 12px; }
+.dc-heading h2 { font-size: 20px; letter-spacing: 0; }
+.dc-kicker, .dc-rule, .dc-category { font-size: 10px; }
+.dc-actions button, .dc-actions a { font-family: "Roboto", "Noto Color Emoji", sans-serif; font-size: 12px; }
+.dc-sync { font-size: 11px; color: #4d8195; display: flex; align-items: center; gap: 8px; }
+.dc-sync button { border: 0; background: none; color: #17658a; text-decoration: underline; cursor: pointer; padding: 2px; }
