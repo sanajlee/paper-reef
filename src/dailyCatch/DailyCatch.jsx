@@ -5,7 +5,7 @@ import './DailyCatch.css';
 
 const storeKey = identity => `paperreef-dailycatch-v1:${identity || 'local'}`;
 function readStore(identity) {
-  try { return JSON.parse(localStorage.getItem(storeKey(identity))) || '{}'; }
+  try { return JSON.parse(localStorage.getItem(storeKey(identity)) || '{}'); }
   catch { return {}; }
 }
 
