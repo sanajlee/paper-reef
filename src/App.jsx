@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import "./App.css";
 import { supabase } from "./supabase";
+import DailyCatch from './dailyCatch/DailyCatch';
 import reefLeft from "./assets/reef-left.png";
 import reefBottom from "./assets/reef-bottom.png";
 import reefRight from "./assets/reef-right.png";
@@ -695,6 +696,15 @@ export default function App() {
           onSave={saveTopic}
         />
       )}
+
+    <DailyCatch
+      key={user?.id || 'local'}
+      userId={user?.id || 'local'}
+      papers={papers}
+      enabled={!authLoading && (!user || syncStatus !== 'loading')}
+      onMarkRead={(id) => updatePaper(id, { isRead: true })}
+      onSavePaper={(paper) => setPapers(prev => [paper, ...prev])}
+    />
 
     </div>
   );
