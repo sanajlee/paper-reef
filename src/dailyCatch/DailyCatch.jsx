@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { asLibraryPaper, chooseCatch, localDay, paperKey } from './engine';
-import { fetchDiscoveries } from './discovery';
+import { excludeVisualModels, fetchDiscoveries } from './discovery';
 import { createCatch, loadCatches, updateCatch } from './sync';
 import './DailyCatch.css';
 
@@ -66,11 +66,12 @@ export default function DailyCatch({ papers, userId, enabled = true, onMarkRead,
     const cacheKey = 'paperreef-discovery-cache-v1';
     let cached = [];
     try { cached = JSON.parse(localStorage.getItem(cacheKey) || '[]'); } catch { /* ignore */ }
+    cached = excludeVisualModels(cached);
     setDiscoveries(cached);
     fetchDiscoveries().then(items => {
       if (!alive) return;
       const byId = new Map([...cached, ...items].map(p => [p.id, p]));
-      const merged = [...byId.values()].slice(-500);
+      const merged = excludeVisualModels([...byId.values()]).slice(-500);
       setDiscoveries(merged);
       localStorage.setItem(cacheKey, JSON.stringify(merged));
     }).catch(err => { if (alive) setFeedError(err.message); })
